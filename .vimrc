@@ -26,7 +26,7 @@ set smartcase
 set wildmenu
 set wildmode=list:longest,full
 
-set gdefault
+"set gdefault
 
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
