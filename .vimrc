@@ -1,5 +1,7 @@
 set nocompatible
 
+set autochdir
+
 "filetype plugin indent on
 syntax on
 "
