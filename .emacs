@@ -23,7 +23,7 @@
 (column-number-mode t)
 (set-fringe-style -1)
 (tooltip-mode -1)
-(set-default-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-11-*-*-*-m-0-iso10646-1")
+(set-default-font "-unknown-DejaVu Sans Mono-normal-normal-normal-*-10-*-*-*-m-0-iso10646-1")
 
 (load-theme 'tango)
 
@@ -52,7 +52,11 @@
 ;(require 'evil)  
 ;(evil-mode 1)
 
-(setq-default scheme-program-name "guile")
+(autoload 'scheme-mode "cmuscheme" "Major mode for Scheme." t) 
+(autoload 'run-scheme "cmuscheme" "Switch to interactive Scheme buffer." t) 
+(setq-default scheme-program-name "csi")
+(add-hook 'scheme-mode-hook 'turn-on-font-lock) 
+(add-hook 'inferior-scheme-mode-hook 'turn-on-paredit)
 
 (autoload 'paredit-mode "paredit"
   "Minor mode for pseudo-structurally editing Lisp code." t)
