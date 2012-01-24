@@ -98,3 +98,4 @@
  )
 
 (load-theme 'tango-dark)
+(put 'erase-buffer 'disabled nil)

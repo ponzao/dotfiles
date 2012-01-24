@@ -40,4 +40,6 @@ set softtabstop=2
 
 set t_Co=256
 
-colorscheme blackdust
+colorscheme tango2
+
+autocmd vimenter * if !argc() | NERDTree | endif
