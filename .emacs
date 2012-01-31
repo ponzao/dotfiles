@@ -34,23 +34,12 @@
 
 (package-initialize)
 
-;(defun turn-on-paredit () (paredit-mode 1))
-;(add-hook 'clojure-mode-hook 'turn-on-paredit)
-;
-;(add-hook 'slime-repl-mode-hook
-;          (defun clojure-mode-slime-font-lock ()
-;            (let (font-lock-mode)
-;              (clojure-mode-font-lock-setup))))
-;
-;(add-hook 'slime-repl-mode-hook
-;          (defun clojure-parens ()
-;            (clojure-mode)))
+(defun turn-on-paredit () (paredit-mode 1))
 
-;;(eval-after-load "slime"
-;;  '(progn (slime-setup '(slime-repl))
-;;          (defun paredit-mode-enable () (paredit-mode 1))
-;;          (add-hook 'slime-mode-hook 'paredit-mode-enable)
-;;          (add-hook 'slime-repl-mode-hook 'paredit-mode-enable)))
+(add-hook 'slime-repl-mode-hook
+          (defun clojure-mode-slime-font-lock ()
+            (let (font-lock-mode)
+              (clojure-mode-font-lock-setup))))
 
 (setq slime-net-coding-system 'utf-8-unix)
 
@@ -61,24 +50,25 @@
 ;(require 'evil)  
 ;(evil-mode 1)
 
-;(autoload 'scheme-mode "cmuscheme" "Major mode for Scheme." t) 
-;(autoload 'run-scheme "cmuscheme" "Switch to interactive Scheme buffer." t) 
-;(setq-default scheme-program-name "csi")
-;(add-hook 'scheme-mode-hook 'turn-on-font-lock) 
-;(add-hook 'inferior-scheme-mode-hook 'turn-on-paredit)
-;
-;(autoload 'paredit-mode "paredit"
-;  "Minor mode for pseudo-structurally editing Lisp code." t)
-;(add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode +1)))
-;(add-hook 'lisp-mode-hook             (lambda () (paredit-mode +1)))
-;(add-hook 'lisp-interaction-mode-hook
-;    (lambda ()
-;      (paredit-mode 1)
-;      (show-paren-mode 1)
-;      (setq minor-mode-overriding-map-alist
-;      `((paredit-mode
-;         ,@(remove (cons ?\C-j 'paredit-newline)
-;             paredit-mode-map))))))
+(autoload 'scheme-mode "cmuscheme" "Major mode for Scheme." t) 
+(autoload 'run-scheme "cmuscheme" "Switch to interactive Scheme buffer." t) 
+
+(setq-default scheme-program-name "csi")
+(add-hook 'scheme-mode-hook 'turn-on-font-lock) 
+(add-hook 'inferior-scheme-mode-hook 'turn-on-paredit)
+
+(autoload 'paredit-mode "paredit"
+  "Minor mode for pseudo-structurally editing Lisp code." t)
+(add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode +1)))
+(add-hook 'lisp-mode-hook             (lambda () (paredit-mode +1)))
+(add-hook 'lisp-interaction-mode-hook
+    (lambda ()
+      (paredit-mode 1)
+      (show-paren-mode 1)
+      (setq minor-mode-overriding-map-alist
+      `((paredit-mode
+         ,@(remove (cons ?\C-j 'paredit-newline)
+             paredit-mode-map))))))
 ;(add-hook 'scheme-mode-hook           (lambda () (paredit-mode +1)))
 
 (defun setup-slime-repl-paredit ()
@@ -99,7 +89,7 @@
 
 (add-hook 'slime-repl-mode-hook 'setup-slime-repl-paredit)
 
-(add-hook 'slime-repl-mode-hok (lambda () (paredit-mode +1)))
+(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
 
 (global-set-key (kbd "s-h") 'windmove-left)          ; move to left window
 (global-set-key (kbd "s-l") 'windmove-right)        ; move to right window
