@@ -80,22 +80,31 @@
 ;         ,@(remove (cons ?\C-j 'paredit-newline)
 ;             paredit-mode-map))))))
 ;(add-hook 'scheme-mode-hook           (lambda () (paredit-mode +1)))
-;
-;(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
-;
-;(defun slime-clojure-repl-setup ()
-;  (when (string-equal "clojure" (slime-connection-name))
-;    (clojure-mode-font-lock-setup)
-;    (when (slime-inferior-process)
-;      (slime-redirect-inferior-output))
-;    (swank-clojure-slime-repl-modify-syntax)))
-;
-;(add-hook 'slime-repl-mode-hook 'slime-clojure-repl-setup)
-;
-;(global-set-key (kbd "s-h") 'windmove-left)          ; move to left window
-;(global-set-key (kbd "s-l") 'windmove-right)        ; move to right window
-;(global-set-key (kbd "s-k") 'windmove-up)              ; move to upper window
-;(global-set-key (kbd "s-j") 'windmove-down)          ; move to downer window
+
+(defun setup-slime-repl-paredit ()
+  (define-key slime-repl-mode-map
+    (kbd "DEL") 'paredit-backward-delete)
+  (define-key slime-repl-mode-map
+    (kbd "{") 'paredit-open-curly)
+  (define-key slime-repl-mode-map
+    (kbd "}") 'paredit-close-curly)
+  (modify-syntax-entry ?\{ "(}")
+  (modify-syntax-entry ?\} "){")
+  (modify-syntax-entry ?\[ "(]")
+  (modify-syntax-entry ?\] ")[")
+  (modify-syntax-entry ?~ "'   ")
+  (modify-syntax-entry ?, "    ")
+  (modify-syntax-entry ?^ "'")
+  (modify-syntax-entry ?= "'"))
+
+(add-hook 'slime-repl-mode-hook 'setup-slime-repl-paredit)
+
+(add-hook 'slime-repl-mode-hok (lambda () (paredit-mode +1)))
+
+(global-set-key (kbd "s-h") 'windmove-left)          ; move to left window
+(global-set-key (kbd "s-l") 'windmove-right)        ; move to right window
+(global-set-key (kbd "s-k") 'windmove-up)              ; move to upper window
+(global-set-key (kbd "s-j") 'windmove-down)          ; move to downer window
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
