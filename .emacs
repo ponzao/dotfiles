@@ -61,6 +61,7 @@
   "Minor mode for pseudo-structurally editing Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode +1)))
 (add-hook 'lisp-mode-hook             (lambda () (paredit-mode +1)))
+(add-hook 'clojure-mode-hook             (lambda () (paredit-mode +1)))
 (add-hook 'lisp-interaction-mode-hook
     (lambda ()
       (paredit-mode 1)
@@ -91,10 +92,10 @@
 
 (add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
 
-(global-set-key (kbd "s-h") 'windmove-left)          ; move to left window
-(global-set-key (kbd "s-l") 'windmove-right)        ; move to right window
-(global-set-key (kbd "s-k") 'windmove-up)              ; move to upper window
-(global-set-key (kbd "s-j") 'windmove-down)          ; move to downer window
+(global-set-key (kbd "C-s-b") 'windmove-left)          ; move to left window
+(global-set-key (kbd "C-s-f") 'windmove-right)        ; move to right window
+(global-set-key (kbd "C-s-p") 'windmove-up)              ; move to upper window
+(global-set-key (kbd "C-s-n") 'windmove-down)          ; move to downer window
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
