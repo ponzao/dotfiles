@@ -42,7 +42,7 @@ set t_Co=256
 
 colorscheme tango2
 
-autocmd vimenter * if !argc() | NERDTree | endif
+"autocmd vimenter * if !argc() | NERDTree | endif
 
 noremap  <Up> ""
 noremap! <Up> <Esc>
