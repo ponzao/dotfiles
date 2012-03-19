@@ -52,3 +52,5 @@ noremap  <Left> ""
 noremap! <Left> <Esc>
 noremap  <Right> ""
 noremap! <Right> <Esc>
+
+set clipboard=unnamedplus
